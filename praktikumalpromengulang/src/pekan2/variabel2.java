@@ -1,4 +1,4 @@
-package praktikumalpromengulang;
+package pekan2;
 
 public class variabel2 {
 	public static void main(String[] args) {

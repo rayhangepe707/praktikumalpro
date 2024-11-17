@@ -1,4 +1,4 @@
-package praktikumalpromengulang;
+package pekan2;
 
 public class gabungstring {
 	public static void main(String[] args) {

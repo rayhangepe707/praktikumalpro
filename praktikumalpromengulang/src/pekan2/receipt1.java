@@ -1,4 +1,4 @@
-package praktikumalpromengulang;
+package pekan2;
 
 public class receipt1 {
 	public static void main(String[] args) {
