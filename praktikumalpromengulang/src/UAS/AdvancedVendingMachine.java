@@ -11,7 +11,7 @@ public class AdvancedVendingMachine extends JFrame {
     private JLabel totalLabel;
     private JButton addButton, clearButton, payButton;
 
-    private String[] products = {"Chips", "Soda", "Candy", "Juice", "Water", "Chocolate"};
+    private String[] products = {"Le Minerale", "Teh Gelas", "Ayia", "Kopikap", "Pocari Sweat", "Pop Ice"};
     private double[] prices = {2.00, 1.50, 1.00, 2.50, 1.00, 2.00};
     private double total = 0.0;
 
