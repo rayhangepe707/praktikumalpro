@@ -12,7 +12,11 @@ public class AdvancedVendingMachine extends JFrame {
     private JButton addButton, clearButton, payButton;
 
     private String[] products = {"Le Minerale", "Teh Gelas", "Ayia", "Kopikap", "Pocari Sweat", "Pop Ice"};
+<<<<<<< HEAD
     private double[] prices = {2.00, 1.50, 1.00, 2.00, 3.50, 2.50};
+=======
+    private double[] prices = {2.00, 1.50, 1.00, 2.50, 1.00, 2.00};
+>>>>>>> branch 'master' of https://github.com/rayhangepe707/praktikumalpro.git
     private double total = 0.0;
 
     public AdvancedVendingMachine() {
