@@ -1,27 +1,21 @@
 package pekan8;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.JTextField;
+import javax.swing.BoxLayout;
+import javax.swing.JTextArea;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JLabel;
 import java.awt.Font;
+import javax.swing.DropMode;
 
 public class TugasKalkulator {
 
 	private JFrame frame;
-	private JTextField textField;
-	private JButton btnbagi;
-	
-	double first;
-	double second;
-	double result;
-	String operation;
-	String answer;
-	
-	
+	protected String operation;
+	protected double first;
 
 	/**
 	 * Launch the application.
@@ -51,658 +45,278 @@ public class TugasKalkulator {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 462, 601);
+		frame.setBounds(100, 100, 356, 448);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		textField = new JTextField();
-		textField.setBounds(10, 67, 426, 44);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
+		JTextArea textArea = new JTextArea();
+		textArea.setBounds(10, 11, 319, 65);
+		frame.getContentPane().add(textArea);
 		
-		//===================================================================================================//
-		
-		JButton btnC = new JButton("C");
-		btnC.addActionListener(new ActionListener() {
+		JButton Kembali = new JButton("←");
+		Kembali.setFont(new Font("Tahoma", Font.BOLD, 15));
+		Kembali.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textField.setText(null);
+				String Kembali=null;
+				if(textArea.getText().length()>0)
+				{
+					StringBuilder str=new StringBuilder(textArea.getText());
+					str.deleteCharAt(textArea.getText().length()-1);
+					Kembali=str.toString();
+					textArea.setText(Kembali);
+				}
 			}
 		});
-		btnC.setBounds(31, 149, 89, 53);
-		frame.getContentPane().add(btnC);
+		Kembali.setBounds(10, 87, 80, 60);
+		frame.getContentPane().add(Kembali);
 		
-		//===================================================================================================//
-	
-		
-		JButton btnpersen = new JButton("%");
-		btnpersen.addActionListener(new ActionListener() {
+		JButton Clear = new JButton("C");
+		Clear.setFont(new Font("Tahoma", Font.BOLD, 15));
+		Clear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				first=Double.parseDouble(textField.getText());
-				textField.setText("");
-				operation="%";
+				textArea.setText(null);
 			}
 		});
-		btnpersen.setBounds(229, 149, 89, 53);
-		frame.getContentPane().add(btnpersen);
+		Clear.setBounds(89, 87, 80, 60);
+		frame.getContentPane().add(Clear);
 		
-		//===================================================================================================//
-			
-		JButton btnb = new JButton("B");
-		btnb.addActionListener(new ActionListener() {
+		JButton Angka9 = new JButton("9");
+		Angka9.setFont(new Font("Tahoma", Font.BOLD, 15));
+		Angka9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			String backspace=null;
-			if (textField.getText().length()>0)
-			{
-				
-			}
-			{
-				StringBuilder str=new StringBuilder(textField.getText());
-				str.deleteCharAt(textField.getText().length()-1);
-				backspace = str.toString();
-				textField.setText(backspace);
-			}
-			
-			}
-		});		
-		btnb.setBounds(130, 149, 89, 53);
-		frame.getContentPane().add(btnb);
-		
-		//===================================================================================================//
-		
-		JButton btn7 = new JButton("7");
-		btn7.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String number=textField.getText()+btn7.getText();
-				textField.setText(number);
+				String number=textArea.getText()+Angka9.getText();
+				textArea.setText(number);
 			}
 		});
-
-		btn7.setBounds(31, 213, 89, 53);
-		frame.getContentPane().add(btn7);
+		Angka9.setBounds(169, 147, 80, 60);
+		frame.getContentPane().add(Angka9);
 		
-		//===================================================================================================//
-		
-		JButton btn8 = new JButton("8");
-		btn8.addActionListener(new ActionListener() {
+		JButton DuaNol = new JButton("00");
+		DuaNol.setFont(new Font("Tahoma", Font.BOLD, 15));
+		DuaNol.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String number=textField.getText()+btn8.getText();
-				textField.setText(number);
+				String number=textArea.getText()+DuaNol.getText();
+				textArea.setText(number);
 			}
 		});
-
-		btn8.setBounds(130, 213, 89, 53);
-		frame.getContentPane().add(btn8);
+		DuaNol.setBounds(169, 87, 80, 60);
+		frame.getContentPane().add(DuaNol);
 		
-		//===================================================================================================//
-		
-		JButton btn9 = new JButton("9");
-		btn9.addActionListener(new ActionListener() {
+		JButton Angka7 = new JButton("7");
+		Angka7.setFont(new Font("Tahoma", Font.BOLD, 15));
+		Angka7 .addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String number=textField.getText()+btn9.getText();
-				textField.setText(number);
+				String number=textArea.getText()+Angka7 .getText();
+				textArea.setText(number);
 			}
 		});
-
-		btn9.setBounds(229, 213, 89, 53);
-		frame.getContentPane().add(btn9);
+		Angka7.setBounds(10, 147, 80, 60);
+		frame.getContentPane().add(Angka7);
 		
-		//===================================================================================================//
-		
-		JButton btn4 = new JButton("4");
-		btn4.addActionListener(new ActionListener() {
+		JButton Angka8 = new JButton("8");
+		Angka8.setFont(new Font("Tahoma", Font.BOLD, 15));
+		Angka8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String number=textField.getText()+btn4.getText();
-				textField.setText(number);
+				String number=textArea.getText()+Angka8.getText();
+				textArea.setText(number);
 			}
 		});
-
-		btn4.setBounds(31, 278, 89, 53);
-		frame.getContentPane().add(btn4);
+		Angka8.setBounds(89, 147, 80, 60);
+		frame.getContentPane().add(Angka8);
 		
-		//===================================================================================================//
-		
-		JButton btn5 = new JButton("5");
-		btn5.addActionListener(new ActionListener() {
+		JButton Angka6 = new JButton("6");
+		Angka6.setFont(new Font("Tahoma", Font.BOLD, 15));
+		Angka6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String number=textField.getText()+btn5.getText();
-				textField.setText(number);
+				String number=textArea.getText()+Angka6.getText();
+				textArea.setText(number);
 			}
 		});
-
-		btn5.setBounds(130, 278, 89, 53);
-		frame.getContentPane().add(btn5);
+		Angka6.setBounds(169, 207, 80, 60);
+		frame.getContentPane().add(Angka6);
 		
-		//===================================================================================================//
-		
-		JButton btn6 = new JButton("6");
-		btn6.addActionListener(new ActionListener() {
+		JButton Tambah = new JButton("+");
+		Tambah.setFont(new Font("Tahoma", Font.BOLD, 15));
+		Tambah.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String number=textField.getText()+btn6.getText();
-				textField.setText(number);
+				first=Double.parseDouble(textArea.getText());
+				textArea.setText("");
+				operation="+";
 			}
 		});
-
-		btn6.setBounds(229, 278, 89, 53);
-		frame.getContentPane().add(btn6);
+		Tambah.setBounds(249, 87, 80, 60);
+		frame.getContentPane().add(Tambah);
 		
-		//===================================================================================================//
-		
-		JButton btntitik = new JButton(".");
-		btntitik.addActionListener(new ActionListener() {
+		JButton Angka4 = new JButton("4");
+		Angka4.setFont(new Font("Tahoma", Font.BOLD, 15));
+		Angka4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String number=textField.getText()+btntitik.getText();
-				textField.setText(number);
+				String number=textArea.getText()+Angka4.getText();
+				textArea.setText(number);
 			}
 		});
-
-		btntitik.setBounds(130, 406, 89, 53);
-		frame.getContentPane().add(btntitik);
+		Angka4.setBounds(10, 207, 80, 60);
+		frame.getContentPane().add(Angka4);
 		
-		//===================================================================================================//
-		
-		btnbagi = new JButton("/");
-		btnbagi.addActionListener(new ActionListener() {
+		JButton Angka5 = new JButton("5");
+		Angka5.setFont(new Font("Tahoma", Font.BOLD, 15));
+		Angka5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				first=Double.parseDouble(textField.getText());
-				textField.setText("");
-				operation="/";
+				String number=textArea.getText()+Angka5.getText();
+				textArea.setText(number);
 			}
 		});
-		btnbagi.setBounds(328, 149, 89, 53);
-		frame.getContentPane().add(btnbagi);
+		Angka5.setBounds(89, 207, 80, 60);
+		frame.getContentPane().add(Angka5);
 		
-		//===================================================================================================//
-		
-		JButton btnkali = new JButton("*");
-		btnkali.addActionListener(new ActionListener() {
+		JButton Angka3 = new JButton("3");
+		Angka3.setFont(new Font("Tahoma", Font.BOLD, 15));
+		Angka3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				first=Double.parseDouble(textField.getText());
-				textField.setText("");
-				operation="*";
-				
-				
+				String number=textArea.getText()+Angka3.getText();
+				textArea.setText(number);
 			}
-		});	
-		btnkali.setBounds(328, 213, 89, 53);
-		frame.getContentPane().add(btnkali);
+		});
+		Angka3.setBounds(169, 267, 80, 60);
+		frame.getContentPane().add(Angka3);
 		
-		//===================================================================================================//
-		
-		JButton btnkurang = new JButton("-");
-		btnkurang.addActionListener(new ActionListener() {
+		JButton kurang = new JButton("-");
+		kurang.setFont(new Font("Tahoma", Font.BOLD, 15));
+		kurang.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				first=Double.parseDouble(textField.getText());
-				textField.setText("");
+				first=Double.parseDouble(textArea.getText());
+				textArea.setText("");
 				operation="-";
 			}
 		});
-		btnkurang.setBounds(328, 278, 89, 53);
-		frame.getContentPane().add(btnkurang);
+		kurang.setBounds(249, 147, 80, 60);
+		frame.getContentPane().add(kurang);
 		
-		//===================================================================================================//
+		JButton Angka1 = new JButton("1");
+		Angka1.setFont(new Font("Tahoma", Font.BOLD, 15));
+		Angka1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String number=textArea.getText()+Angka1.getText();
+				textArea.setText(number);
+			}
+		});
+		Angka1.setBounds(10, 267, 80, 60);
+		frame.getContentPane().add(Angka1);
 		
-		JButton btnjumlah = new JButton("=");
-		btnjumlah.addActionListener(new ActionListener() {
+		JButton Angka2 = new JButton("2");
+		Angka2.setFont(new Font("Tahoma", Font.BOLD, 15));
+		Angka2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String number=textArea.getText()+Angka2.getText();
+				textArea.setText(number);
+			}
+		});
+		Angka2.setBounds(89, 267, 80, 60);
+		frame.getContentPane().add(Angka2);
+		
+		JButton Titik = new JButton(".");
+		Titik.setFont(new Font("Tahoma", Font.BOLD, 15));
+		Titik.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String number=textArea.getText()+Titik.getText();
+				textArea.setText(number);
+			}
+		});
+		Titik.setBounds(10, 327, 80, 60);
+		frame.getContentPane().add(Titik);
+		
+		JButton SamaDengan = new JButton("=");
+		SamaDengan.setFont(new Font("Tahoma", Font.BOLD, 15));
+		SamaDengan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String answer;
-				second=Double.parseDouble(textField.getText());
-				if (operation=="+")
+				double second = Double.parseDouble(textArea.getText());
+				double result;
+				if(operation=="+")
 				{
 					result=first+second;
-					answer=String.format("%.2f" ,result);
-					textField.setText(answer);
+					answer=String.format("%.0f", result);
+					textArea.setText(answer);
 				}
-				else if ( operation=="-")
+				else if (operation=="-")
 				{
 					result=first-second;
 					answer=String.format("%.2f", result);
-					textField.setText(answer);
+					textArea.setText(answer);
 				}
-				else if ( operation=="*")
+				else if(operation=="*")
 				{
 					result=first*second;
 					answer=String.format("%.2f", result);
-					textField.setText(answer);
+					textArea.setText(answer);
 				}
-				else if ( operation=="/")
+				else if(operation=="/")
 				{
 					result=first/second;
 					answer=String.format("%.2f", result);
-					textField.setText(answer);
+					textArea.setText(answer);
 				}
-				else if ( operation=="%")
+				else if(operation=="%")
 				{
 					result=first%second;
 					answer=String.format("%.2f", result);
-					textField.setText(answer);				
-				}
-					
-					
-			}
-		});
-		btnjumlah.setBounds(229, 406, 188, 53);
-		frame.getContentPane().add(btnjumlah);
-		
-		//===================================================================================================//
-		
-		JButton btn0 = new JButton("0");
-		btn0.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String number=textField.getText()+btn0.getText();
-				textField.setText(number);
-			}
-		});
-
-		btn0.setBounds(31, 406, 89, 53);
-		frame.getContentPane().add(btn0);
-		
-		//===================================================================================================//
-		
-		JButton btn1 = new JButton("1");
-		btn1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String number=textField.getText()+btn1.getText();
-				textField.setText(number);
-			}
-		});
-		btn1.setBounds(31, 342, 89, 53);
-		frame.getContentPane().add(btn1);
-		
-		//===================================================================================================//
-		
-		JButton btn2 = new JButton("2");
-		btn2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String number=textField.getText()+btn2.getText();
-				textField.setText(number);
-			}
-		});
-		btn2.setBounds(130, 342, 89, 53);
-		frame.getContentPane().add(btn2);
-		
-		//===================================================================================================//
-		
-		JButton btn3 = new JButton("3");
-		btn3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String number=textField.getText()+btn3.getText();
-				textField.setText(number);
-			}
-		});
-		btn3.setBounds(229, 342, 89, 53);
-		frame.getContentPane().add(btn3);
-		
-		//===================================================================================================//
-		
-		JButton btntambah = new JButton("+");
-		btntambah.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				first=Double.parseDouble(textField.getText());
-				textField.setText("");
-				operation="+";
-				
-			}
-		});
-		btntambah.setBounds(328, 342, 89, 53);
-		frame.getContentPane().add(btntambah);
-		
-		JLabel lblNewLabel = new JLabel("Lala's Calculator");
-		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 17));
-		lblNewLabel.setBounds(10, 21, 138, 24);
-		frame.getContentPane().add(lblNewLabel);
-	}
-}
-package pekan8;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JLabel;
-import java.awt.Font;
-
-public class TugasKalkulator {
-
-	private JFrame frame;
-	private JTextField textField;
-	private JButton btnbagi;
-	
-	double first;
-	double second;
-	double result;
-	String operation;
-	String answer;
-	
-	
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TugasKalkulator window = new TugasKalkulator();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
+					textArea.setText(answer);
 				}
 			}
 		});
-	}
-
-	/**
-	 * Create the application.
-	 */
-	public TugasKalkulator() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 462, 601);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		SamaDengan.setBounds(169, 327, 80, 60);
+		frame.getContentPane().add(SamaDengan);
 		
-		textField = new JTextField();
-		textField.setBounds(10, 67, 426, 44);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
-		
-		//===================================================================================================//
-		
-		JButton btnC = new JButton("C");
-		btnC.addActionListener(new ActionListener() {
+		JButton Angka0 = new JButton("0");
+		Angka0.setFont(new Font("Tahoma", Font.BOLD, 15));
+		Angka0.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textField.setText(null);
+				String number=textArea.getText()+Angka0.getText();
+				textArea.setText(number);
 			}
 		});
-		btnC.setBounds(31, 149, 89, 53);
-		frame.getContentPane().add(btnC);
+		Angka0.setBounds(89, 327, 80, 60);
+		frame.getContentPane().add(Angka0);
 		
-		//===================================================================================================//
-	
-		
-		JButton btnpersen = new JButton("%");
-		btnpersen.addActionListener(new ActionListener() {
+		JButton Kali = new JButton("*");
+		Kali.setFont(new Font("Tahoma", Font.BOLD, 15));
+		Kali.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				first=Double.parseDouble(textField.getText());
-				textField.setText("");
-				operation="%";
+				first=Double.parseDouble(textArea.getText());
+				textArea.setText("");
+				operation="*";
 			}
 		});
-		btnpersen.setBounds(229, 149, 89, 53);
-		frame.getContentPane().add(btnpersen);
+		Kali.setBounds(249, 207, 80, 60);
+		frame.getContentPane().add(Kali);
 		
-		//===================================================================================================//
-			
-		JButton btnb = new JButton("B");
-		btnb.addActionListener(new ActionListener() {
+		JButton Bagi = new JButton("/");
+		Bagi.setFont(new Font("Tahoma", Font.BOLD, 15));
+		Bagi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			String backspace=null;
-			if (textField.getText().length()>0)
-			{
-				
-			}
-			{
-				StringBuilder str=new StringBuilder(textField.getText());
-				str.deleteCharAt(textField.getText().length()-1);
-				backspace = str.toString();
-				textField.setText(backspace);
-			}
-			
-			}
-		});		
-		btnb.setBounds(130, 149, 89, 53);
-		frame.getContentPane().add(btnb);
-		
-		//===================================================================================================//
-		
-		JButton btn7 = new JButton("7");
-		btn7.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String number=textField.getText()+btn7.getText();
-				textField.setText(number);
-			}
-		});
-
-		btn7.setBounds(31, 213, 89, 53);
-		frame.getContentPane().add(btn7);
-		
-		//===================================================================================================//
-		
-		JButton btn8 = new JButton("8");
-		btn8.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String number=textField.getText()+btn8.getText();
-				textField.setText(number);
-			}
-		});
-
-		btn8.setBounds(130, 213, 89, 53);
-		frame.getContentPane().add(btn8);
-		
-		//===================================================================================================//
-		
-		JButton btn9 = new JButton("9");
-		btn9.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String number=textField.getText()+btn9.getText();
-				textField.setText(number);
-			}
-		});
-
-		btn9.setBounds(229, 213, 89, 53);
-		frame.getContentPane().add(btn9);
-		
-		//===================================================================================================//
-		
-		JButton btn4 = new JButton("4");
-		btn4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String number=textField.getText()+btn4.getText();
-				textField.setText(number);
-			}
-		});
-
-		btn4.setBounds(31, 278, 89, 53);
-		frame.getContentPane().add(btn4);
-		
-		//===================================================================================================//
-		
-		JButton btn5 = new JButton("5");
-		btn5.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String number=textField.getText()+btn5.getText();
-				textField.setText(number);
-			}
-		});
-
-		btn5.setBounds(130, 278, 89, 53);
-		frame.getContentPane().add(btn5);
-		
-		//===================================================================================================//
-		
-		JButton btn6 = new JButton("6");
-		btn6.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String number=textField.getText()+btn6.getText();
-				textField.setText(number);
-			}
-		});
-
-		btn6.setBounds(229, 278, 89, 53);
-		frame.getContentPane().add(btn6);
-		
-		//===================================================================================================//
-		
-		JButton btntitik = new JButton(".");
-		btntitik.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String number=textField.getText()+btntitik.getText();
-				textField.setText(number);
-			}
-		});
-
-		btntitik.setBounds(130, 406, 89, 53);
-		frame.getContentPane().add(btntitik);
-		
-		//===================================================================================================//
-		
-		btnbagi = new JButton("/");
-		btnbagi.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				first=Double.parseDouble(textField.getText());
-				textField.setText("");
+				first=Double.parseDouble(textArea.getText());
+				textArea.setText("");
 				operation="/";
 			}
 		});
-		btnbagi.setBounds(328, 149, 89, 53);
-		frame.getContentPane().add(btnbagi);
+		Bagi.setBounds(249, 267, 80, 60);
+		frame.getContentPane().add(Bagi);
 		
-		//===================================================================================================//
-		
-		JButton btnkali = new JButton("*");
-		btnkali.addActionListener(new ActionListener() {
+		JButton Modulo = new JButton("%");
+		Modulo.setFont(new Font("Tahoma", Font.BOLD, 15));
+		Modulo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				first=Double.parseDouble(textField.getText());
-				textField.setText("");
-				operation="*";
-				
-				
-			}
-		});	
-		btnkali.setBounds(328, 213, 89, 53);
-		frame.getContentPane().add(btnkali);
-		
-		//===================================================================================================//
-		
-		JButton btnkurang = new JButton("-");
-		btnkurang.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				first=Double.parseDouble(textField.getText());
-				textField.setText("");
-				operation="-";
+				first=Double.parseDouble(textArea.getText());
+				textArea.setText("");
+				operation="%";
+		Modulo.setBounds(249, 327, 80, 60);
+		frame.getContentPane().add(Modulo);
 			}
 		});
-		btnkurang.setBounds(328, 278, 89, 53);
-		frame.getContentPane().add(btnkurang);
+		Modulo.setBounds(249, 327, 80, 60);
+		frame.getContentPane().add(Modulo);
 		
-		//===================================================================================================//
-		
-		JButton btnjumlah = new JButton("=");
-		btnjumlah.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String answer;
-				second=Double.parseDouble(textField.getText());
-				if (operation=="+")
-				{
-					result=first+second;
-					answer=String.format("%.2f" ,result);
-					textField.setText(answer);
-				}
-				else if ( operation=="-")
-				{
-					result=first-second;
-					answer=String.format("%.2f", result);
-					textField.setText(answer);
-				}
-				else if ( operation=="*")
-				{
-					result=first*second;
-					answer=String.format("%.2f", result);
-					textField.setText(answer);
-				}
-				else if ( operation=="/")
-				{
-					result=first/second;
-					answer=String.format("%.2f", result);
-					textField.setText(answer);
-				}
-				else if ( operation=="%")
-				{
-					result=first%second;
-					answer=String.format("%.2f", result);
-					textField.setText(answer);				
-				}
-					
-					
-			}
-		});
-		btnjumlah.setBounds(229, 406, 188, 53);
-		frame.getContentPane().add(btnjumlah);
-		
-		//===================================================================================================//
-		
-		JButton btn0 = new JButton("0");
-		btn0.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String number=textField.getText()+btn0.getText();
-				textField.setText(number);
-			}
-		});
-
-		btn0.setBounds(31, 406, 89, 53);
-		frame.getContentPane().add(btn0);
-		
-		//===================================================================================================//
-		
-		JButton btn1 = new JButton("1");
-		btn1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String number=textField.getText()+btn1.getText();
-				textField.setText(number);
-			}
-		});
-		btn1.setBounds(31, 342, 89, 53);
-		frame.getContentPane().add(btn1);
-		
-		//===================================================================================================//
-		
-		JButton btn2 = new JButton("2");
-		btn2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String number=textField.getText()+btn2.getText();
-				textField.setText(number);
-			}
-		});
-		btn2.setBounds(130, 342, 89, 53);
-		frame.getContentPane().add(btn2);
-		
-		//===================================================================================================//
-		
-		JButton btn3 = new JButton("3");
-		btn3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String number=textField.getText()+btn3.getText();
-				textField.setText(number);
-			}
-		});
-		btn3.setBounds(229, 342, 89, 53);
-		frame.getContentPane().add(btn3);
-		
-		//===================================================================================================//
-		
-		JButton btntambah = new JButton("+");
-		btntambah.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				first=Double.parseDouble(textField.getText());
-				textField.setText("");
-				operation="+";
-				
-			}
-		});
-		btntambah.setBounds(328, 342, 89, 53);
-		frame.getContentPane().add(btntambah);
-		
-		JLabel lblNewLabel = new JLabel("Lala's Calculator");
-		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 17));
-		lblNewLabel.setBounds(10, 21, 138, 24);
-		frame.getContentPane().add(lblNewLabel);
-	}
+	}		
 }
+
+	
